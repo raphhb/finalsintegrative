@@ -8,7 +8,7 @@
 
             if (!isset($_SESSION['users']))
             {
-                return Redirect("LogIn");
+                return Redirect("login");
             }
 
             $this->view('aboutus');
