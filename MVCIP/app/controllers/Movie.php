@@ -20,7 +20,7 @@ class Movie
     {
         return '<div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-2 card-effect">' // Adjust the column classes
             . '<div class="card primary-color flex-grow-1 shadow w-100 inner-card-effect p-lg-2">' // Remove the width styles
-            . '<a data-bs-toggle="modal"><img src="'.ROOT.'/assets/Images/Images' . $img . '" alt="' . $title . '" style="height: 100%; width: 100%;"></a>' // Set image width to 100% and height to auto
+            . '<a data-bs-toggle="modal"><img src="'.APP.'/Images/Images' . $img . '" alt="' . $title . '" style="height: 100%; width: 100%;"></a>' // Set image width to 100% and height to auto
             . '<div class="card-body my-5 primary-color">'
             . '<h5 class="card-title" style="color: white;">' . $title . '</h5>'
             . '</div>'
@@ -43,7 +43,7 @@ class Movie
     {
         return '<div class="modal fade" id="' . $modal_id . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">'
             . '<div class="modal-dialog">'
-            . '<div class="modal-content" style="background: url('.ROOT.'/assets/Images/Images' . $img . ') no-repeat center center; background-size: cover;">'
+            . '<div class="modal-content" style="background: url('.APP.'/Images/Images' . $img . ') no-repeat center center; background-size: cover;">'
             . '<div class="modal-header">'
             . '<h1 class="text-white title" id="logo">i<small id="accent" class="fw-bolder">M</small>ovie</h1>'
             . '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #CCC830;"></button>'

@@ -3,13 +3,15 @@
 if($_SERVER['SERVER_NAME'] == 'localhost')
 {
 	/** database config **/
-	define('DBNAME', 'dbName');
+	define('DBNAME', 'bookingsystem');
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
 	define('DBPASS', '');
 	define('DBDRIVER', '');
-	
-	define('ROOT', 'http://localhost/finalsintegrative/MVCIP/public');
+	define('ROOT', 'http://localhost/MVCIP/public');
+	// DO NOT DELETE, USED FOR APP LEVEL REFERENCE.
+	define('APP', 'http://localhost/MVCIP/app'); 
+
 
 }else
 {
