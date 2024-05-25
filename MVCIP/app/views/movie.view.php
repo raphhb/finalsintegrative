@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/movie/hover.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/movie/footer.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/movie/misc.css">
+
+
 </head>
 <!-- NAVIGATION BAR -->
 <div class="px-lg-4 px-xl-4 px-xxl-5 p-2 ">
@@ -42,31 +44,28 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link border-under" href="#">Movie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">TV-Show</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Web Series</a>
+                        <a class="nav-link" href="#">Reservation</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link border-under" href="#">About Us</a>
+                    </li>
                 </ul>
             </div>
-
         </div>
-        <form class="d-flex my-4 m-auto" role="search">
-            <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+        <form id="searchForm" class="d-flex my-4 m-auto" role="search" method="POST" action="Movie/search">
+            <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search" name="searchMovie">
             <button class="btn rounded-5" style="background-color: #CCC830;" type="submit"><i
                     class="bi bi-search fs-6"></i></button>
         </form>
+
         <div class="mx-2 d-none d-lg-block fs-2 fw-6" style="color: white;">
             |
         </div>
         <div class="mx-1 d-none d-lg-block">
-            <a href="#"><i class="bi bi-globe2 fs-2 fw-bold" style="color: #CCC830;"></i></a>
+            <a href="#"><i class="bi bi-box-arrow-right fs-2 fw-bold" style="color: #CCC830;"></i></i></a>
         </div>
     </nav>
 </div>
@@ -99,238 +98,17 @@
     <content id="movies" class=" d-flex">
         <!-- Movie.view.php -->
         <div class="container">
-            <div class="row d-flex align-items-stretch w-100">
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-2 card-effect">
-                    <div class="card primary-color flex-grow-1 shadow w-100 inner-card-effect p-lg-2">
-                        <a data-bs-toggle="modal"><img src="https://via.placeholder.com/300x300" alt=""
-                                style="height: 100%; width: 100%;"></a>
-                        <div class="card-body my-5 primary-color">
-                            <h5 class="card-title" style="color: white;"></h5>
-                        </div>
-                        <ul class="primary-color ">
-                            <li class="list-group-item primary-color d-flex text-end my-3 "
-                                style="color: white; font-size:0.8rem;"><button type="button"
-                                    class="border-0 rounded-5 shadow-lg browse-button" data-bs-toggle="modal"
-                                    data-bs-target="#' . $modal_id ">
-                                    <i class="bi bi-info-circle fs-5"></i>
-                                </button>
-                            </li>
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">2024</li>
-                        </ul>
-                        <ul class="primary-color d-flex justify-content-between">
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">Up to IMAX
-                            </li>
-                            <li class="list-group-item primary-color d-flex text-end"
-                                style="color: white; font-size:0.8rem; margin-right:0.5rem;">
-                                4.5
-                                <i class="bi bi-star-fill px-2" style="color:#CCC830"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
-                <!-- This is for placeholder only. Delete when actual development begins -->
+            <?php
+            $content = new Movie();
+            $content->GetMovie();
 
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-2 card-effect">
-                    <div class="card primary-color flex-grow-1 shadow w-100 inner-card-effect p-lg-2">
-                        <a data-bs-toggle="modal"><img src="https://via.placeholder.com/300x300" alt=""
-                                style="height: 100%; width: 100%;"></a>
-                        <div class="card-body my-5 primary-color">
-                            <h5 class="card-title" style="color: white;"></h5>
-                        </div>
-                        <ul class="primary-color ">
-                            <li class="list-group-item primary-color d-flex text-end my-3 "
-                                style="color: white; font-size:0.8rem;"><button type="button"
-                                    class="border-0 rounded-5 shadow-lg browse-button" data-bs-toggle="modal"
-                                    data-bs-target="#' . $modal_id ">
-                                    <i class="bi bi-info-circle fs-5"></i>
-                                </button>
-                            </li>
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">2024</li>
-                        </ul>
-                        <ul class="primary-color d-flex justify-content-between">
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">Up to IMAX
-                            </li>
-                            <li class="list-group-item primary-color d-flex text-end"
-                                style="color: white; font-size:0.8rem; margin-right:0.5rem;">
-                                4.5
-                                <i class="bi bi-star-fill px-2" style="color:#CCC830"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-2 card-effect">
-                    <div class="card primary-color flex-grow-1 shadow w-100 inner-card-effect p-lg-2">
-                        <a data-bs-toggle="modal"><img src="https://via.placeholder.com/300x300" alt=""
-                                style="height: 100%; width: 100%;"></a>
-                        <div class="card-body my-5 primary-color">
-                            <h5 class="card-title" style="color: white;"></h5>
-                        </div>
-                        <ul class="primary-color ">
-                            <li class="list-group-item primary-color d-flex text-end my-3 "
-                                style="color: white; font-size:0.8rem;"><button type="button"
-                                    class="border-0 rounded-5 shadow-lg browse-button" data-bs-toggle="modal"
-                                    data-bs-target="#' . $modal_id ">
-                                    <i class="bi bi-info-circle fs-5"></i>
-                                </button>
-                            </li>
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">2024</li>
-                        </ul>
-                        <ul class="primary-color d-flex justify-content-between">
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">Up to IMAX
-                            </li>
-                            <li class="list-group-item primary-color d-flex text-end"
-                                style="color: white; font-size:0.8rem; margin-right:0.5rem;">
-                                4.5
-                                <i class="bi bi-star-fill px-2" style="color:#CCC830"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-2 card-effect">
-                    <div class="card primary-color flex-grow-1 shadow w-100 inner-card-effect p-lg-2">
-                        <a data-bs-toggle="modal"><img src="https://via.placeholder.com/300x300" alt=""
-                                style="height: 100%; width: 100%;"></a>
-                        <div class="card-body my-5 primary-color">
-                            <h5 class="card-title" style="color: white;"></h5>
-                        </div>
-                        <ul class="primary-color ">
-                            <li class="list-group-item primary-color d-flex text-end my-3 "
-                                style="color: white; font-size:0.8rem;"><button type="button"
-                                    class="border-0 rounded-5 shadow-lg browse-button" data-bs-toggle="modal"
-                                    data-bs-target="#' . $modal_id ">
-                                    <i class="bi bi-info-circle fs-5"></i>
-                                </button>
-                            </li>
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">2024</li>
-                        </ul>
-                        <ul class="primary-color d-flex justify-content-between">
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">Up to IMAX
-                            </li>
-                            <li class="list-group-item primary-color d-flex text-end"
-                                style="color: white; font-size:0.8rem; margin-right:0.5rem;">
-                                4.5
-                                <i class="bi bi-star-fill px-2" style="color:#CCC830"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-2 card-effect">
-                    <div class="card primary-color flex-grow-1 shadow w-100 inner-card-effect p-lg-2">
-                        <a data-bs-toggle="modal"><img src="https://via.placeholder.com/300x300" alt=""
-                                style="height: 100%; width: 100%;"></a>
-                        <div class="card-body my-5 primary-color">
-                            <h5 class="card-title" style="color: white;"></h5>
-                        </div>
-                        <ul class="primary-color ">
-                            <li class="list-group-item primary-color d-flex text-end my-3 "
-                                style="color: white; font-size:0.8rem;"><button type="button"
-                                    class="border-0 rounded-5 shadow-lg browse-button" data-bs-toggle="modal"
-                                    data-bs-target="#' . $modal_id ">
-                                    <i class="bi bi-info-circle fs-5"></i>
-                                </button>
-                            </li>
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">2024</li>
-                        </ul>
-                        <ul class="primary-color d-flex justify-content-between">
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">Up to IMAX
-                            </li>
-                            <li class="list-group-item primary-color d-flex text-end"
-                                style="color: white; font-size:0.8rem; margin-right:0.5rem;">
-                                4.5
-                                <i class="bi bi-star-fill px-2" style="color:#CCC830"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-2 card-effect">
-                    <div class="card primary-color flex-grow-1 shadow w-100 inner-card-effect p-lg-2">
-                        <a data-bs-toggle="modal"><img src="https://via.placeholder.com/300x300" alt=""
-                                style="height: 100%; width: 100%;"></a>
-                        <div class="card-body my-5 primary-color">
-                            <h5 class="card-title" style="color: white;"></h5>
-                        </div>
-                        <ul class="primary-color ">
-                            <li class="list-group-item primary-color d-flex text-end my-3 "
-                                style="color: white; font-size:0.8rem;"><button type="button"
-                                    class="border-0 rounded-5 shadow-lg browse-button" data-bs-toggle="modal"
-                                    data-bs-target="#' . $modal_id ">
-                                    <i class="bi bi-info-circle fs-5"></i>
-                                </button>
-                            </li>
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">2024</li>
-                        </ul>
-                        <ul class="primary-color d-flex justify-content-between">
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">Up to IMAX
-                            </li>
-                            <li class="list-group-item primary-color d-flex text-end"
-                                style="color: white; font-size:0.8rem; margin-right:0.5rem;">
-                                4.5
-                                <i class="bi bi-star-fill px-2" style="color:#CCC830"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-2 card-effect">
-                    <div class="card primary-color flex-grow-1 shadow w-100 inner-card-effect p-lg-2">
-                        <a data-bs-toggle="modal"><img src="https://via.placeholder.com/300x300" alt=""
-                                style="height: 100%; width: 100%;"></a>
-                        <div class="card-body my-5 primary-color">
-                            <h5 class="card-title" style="color: white;"></h5>
-                        </div>
-                        <ul class="primary-color ">
-                            <li class="list-group-item primary-color d-flex text-end my-3 "
-                                style="color: white; font-size:0.8rem;"><button type="button"
-                                    class="border-0 rounded-5 shadow-lg browse-button" data-bs-toggle="modal"
-                                    data-bs-target="#' . $modal_id ">
-                                    <i class="bi bi-info-circle fs-5"></i>
-                                </button>
-                            </li>
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">2024</li>
-                        </ul>
-                        <ul class="primary-color d-flex justify-content-between">
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">Up to IMAX
-                            </li>
-                            <li class="list-group-item primary-color d-flex text-end"
-                                style="color: white; font-size:0.8rem; margin-right:0.5rem;">
-                                4.5
-                                <i class="bi bi-star-fill px-2" style="color:#CCC830"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-2 card-effect">
-                    <div class="card primary-color flex-grow-1 shadow w-100 inner-card-effect p-lg-2">
-                        <a data-bs-toggle="modal"><img src="https://via.placeholder.com/300x300" alt=""
-                                style="height: 100%; width: 100%;"></a>
-                        <div class="card-body my-5 primary-color">
-                            <h5 class="card-title" style="color: white;"></h5>
-                        </div>
-                        <ul class="primary-color ">
-                            <li class="list-group-item primary-color d-flex text-end my-3 "
-                                style="color: white; font-size:0.8rem;"><button type="button"
-                                    class="border-0 rounded-5 shadow-lg browse-button" data-bs-toggle="modal"
-                                    data-bs-target="#' . $modal_id ">
-                                    <i class="bi bi-info-circle fs-5"></i>
-                                </button>
-                            </li>
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">2024</li>
-                        </ul>
-                        <ul class="primary-color d-flex justify-content-between">
-                            <li class="list-group-item primary-color" style="color: white; font-size:0.8rem;">Up to IMAX
-                            </li>
-                            <li class="list-group-item primary-color d-flex text-end"
-                                style="color: white; font-size:0.8rem; margin-right:0.5rem;">
-                                4.5
-                                <i class="bi bi-star-fill px-2" style="color:#CCC830"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
+            ?>
         </div>
     </content>
 </div>
+<hr />
 <div class="base-color align-content-center" style="border-top: 1px solid #CCC830" id="footer-wrapper">
     <div>
         <blockquote class="blockquote mb-0">
@@ -447,6 +225,9 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
+
+<script src="<?=ROOT?>/assets/js/movie/search.js"></script>
+
 </body>
 
 </html>

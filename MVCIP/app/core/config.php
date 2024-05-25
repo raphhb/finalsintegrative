@@ -8,8 +8,10 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBUSER', 'root');
 	define('DBPASS', '');
 	define('DBDRIVER', '');
-	
 	define('ROOT', 'http://localhost/MVCIP/public');
+	// DO NOT DELETE, USED FOR APP LEVEL REFERENCE.
+	define('APP', 'http://localhost/MVCIP/app'); 
+
 
 }else
 {
