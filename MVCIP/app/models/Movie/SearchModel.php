@@ -1,5 +1,5 @@
 <?php
-class Search
+class SearchModel
 {
     private $movieName = "";
 

@@ -23,14 +23,13 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/movie/footer.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/movie/misc.css">
 
-
 </head>
 <!-- NAVIGATION BAR -->
 <div class="px-lg-4 px-xl-4 px-xxl-5 p-2 ">
     <nav class="navbar navbar-expand-lg container">
         <div class="container-fluid">
             <div class="d-flex rounded-5">
-                <a href="#" style="text-decoration: none;">
+                <a href="<?= ROOT ?>/movie" style="text-decoration: none;">
                     <h1 class="text-white title" id="logo">i<small id="accent" class="fw-bolder">M</small>ovie</h1>
                 </a>
             </div>
@@ -55,7 +54,8 @@
                 </ul>
             </div>
         </div>
-        <form id="searchForm" class="d-flex my-4 m-auto" role="search" method="POST" action="Movie/search">
+        <form id="searchForm" class="d-flex my-4 m-auto" role="search" method="POST"
+            action="<?php echo $_SERVER['REQUEST_URI']; ?>">
             <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search" name="searchMovie">
             <button class="btn rounded-5" style="background-color: #CCC830;" type="submit"><i
                     class="bi bi-search fs-6"></i></button>
@@ -70,41 +70,83 @@
     </nav>
 </div>
 <!-- MAVIGATION BAR -->
+
+</ul>
 <div class="modal-dialog modal-xl">...</div>
 <div id="content-wrapper" class="container px-lg-4 px-xl-4 px-xxl-5 p-2 my-lg-5 py-lg-5 justify-content-center">
     <content>
-        <ul class=" list-unstyled p-0 m-0" id="sub-heading">
-            <li style="color:#CCC830;" class=" fw-bolder ">IN SS11 CINEMA</li>
-            <li style="color:white;" class="fs-1 fw-bold">UPCOMING MOVIES</li>
-        </ul>
+        <form action="|">
+            <ul class=" list-unstyled p-0 m-0" id="sub-heading">
+                <li style="color:#CCC830;" class=" fw-bolder ">IN SS11 CINEMA</li>
+                <li style="color:white;" class="fs-1 fw-bold">UPCOMING MOVIES</li>
+            </ul>
+        </form>
     </content>
 
     <content id="sub-cat">
-        <!-- <ul class=" list-unstyled p-0 m-0 d-flex justify-content-center gap-3 my-lg-5" id="sub-category">
-                <li style="color:white;" class="rounded-5 border p-lg-2">Action</li>
-                <li style="color:white;" class="rounded-5 border p-lg-2">Horror</li>
-                <li style="color:white" class="rounded-5 border p-lg-2">Documentary</li>
-                <li style="color:white;" class="rounded-5 border p-lg-2">Science-Fiction</li>
-            </ul> -->
-        <ul class=" list-unstyled p-0 m-0 d-md-flex justify-content-center gap-3 my-md-5" id="sub-category">
-            <li style="color:white;" class="text-center rounded-5 my-2 p-2 border p-md-2"><a href="#">Action</a></li>
-            <li style="color:white;" class="text-center rounded-5 my-2 p-2 border p-md-2"><a href="#">Horror</a></li>
-            <li style="color:white" class="text-center rounded-5 my-2 p-2 border p-md-2"><a href="#">Documentary</a>
-            </li>
-            <li style="color:white;" class="text-center rounded-5 my-2 p-2 border p-md-2"><a
-                    href="#">Science-Fiction</a></li>
-        </ul>
+        <form action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post">
+            <ul class="list-unstyled p-0 m-0 d-md-flex justify-content-center gap-3 my-md-5" id="sub-category">
+                <li style="color:white" class="text-center rounded-5 my-2 p-2 border p-md-2">
+                    <button type="submit" name="genre" value="All" class="btn btn-link">All Genre</button>
+                </li>
+                <li style="color:white;" class="text-center rounded-5 my-2 p-2 border p-md-2">
+                    <button type="submit" name="genre" value="Action" class="btn btn-link">Action</button>
+                </li>
+                <li style="color:white;" class="text-center rounded-5 my-2 p-2 border p-md-2">
+                    <button type="submit" name="genre" value="Science-Fiction"
+                        class="btn btn-link">Science-Fiction</button>
+                </li>
+                <li style="color:white" class="text-center rounded-5 my-2 p-2 border p-md-2">
+                    <button type="submit" name="genre" value="Horror" class="btn btn-link">Horror</button>
+                </li>
+            </ul>
+        </form>
     </content>
     <content id="movies" class=" d-flex">
         <!-- Movie.view.php -->
         <div class="container">
 
             <?php
-            $content = new Movie();
-            $content->GetMovie();
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Check if search data was submitted
+                if (isset($_POST['searchMovie'])) {
+                    // Get the search query
+                    $searchQuery = $_POST['searchMovie'];
+
+                    // Create a new Movie object
+                    $movie = new Movie();
+
+                    // Search the movies
+                    $movie->search();
 
 
+                } else if (isset($_POST['genre']) && $_POST['genre'] === "All") {
+                    // Get the genre
+                    $genre = $_POST['genre'];
+
+                    // Create a new Movie object
+                    $movie = new Movie();
+
+                    // Get the movies by genre
+                    $movie->GetMovie();
+
+                } else if (isset($_POST['genre'])) {
+                    // Get the genre
+                    $genre = $_POST['genre'];
+
+                    // Create a new Movie object
+                    $movie = new Movie();
+
+                    // Get the movies by genre
+                    $movie->ByCategory();
+                }
+            } else {
+                // If the form was not submitted, display the main content
+                $content = new Movie();
+                $content->GetMovie();
+            }
             ?>
+
         </div>
     </content>
 </div>
@@ -225,9 +267,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
-
-<script src="<?=ROOT?>/assets/js/movie/search.js"></script>
-
+<script src="<?= ROOT ?>/assets/js/movie/search.js"></script>
+</script>
 </body>
 
 </html>

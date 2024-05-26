@@ -43,7 +43,6 @@ trait Database
 
         return false;
     }
-
 }
 
 

@@ -131,5 +131,42 @@ trait Model
 		}
 	}
 
+	public function SearchMovie($title)
+	{
+		try {
+			$conn = $this->connect();
+			$statement = $conn->prepare("SELECT * FROM movie WHERE Title LIKE :title");
+			$title = "%" . $title . "%"; // for partial matching
+			$statement->bindParam(":title", $title, PDO::FETCH_ASSOC);
+			$statement->execute();
+
+			// Fetch all rows as an associative array
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
+
+	public function FetchByCategory($value)
+	{
+		try {
+			$con = $this->connect();
+			$stm = $con->prepare("SELECT * FROM movie WHERE Genre LIKE :value");
+			$stm->bindParam(":value", $value);
+			$check = $stm->execute();
+			if ($check) {
+				$result = $stm->fetchAll(PDO::FETCH_OBJ);
+				if (is_array($result) && count($result)) {
+					return $result;
+				}
+			}
+
+			return false;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
 
 }

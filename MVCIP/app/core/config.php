@@ -10,9 +10,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBDRIVER', '');
 	define('ROOT', 'http://localhost/MVCIP/public');
 	// DO NOT DELETE, USED FOR APP LEVEL REFERENCE.
-	define('APP', 'http://localhost/MVCIP/app'); 
-
-
+	define('APP', 'http://localhost/MVCIP/app/'); 
 }else
 {
 	/** database config **/
@@ -21,9 +19,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBUSER', 'root');
 	define('DBPASS', '');
 	define('DBDRIVER', '');
-
 	define('ROOT', 'https://www.yourwebsite.com');
-
 }
 
 define('APP_NAME', "My Webiste");
